@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoute");
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoute");
 const errorHandler = require("./middleware/errorHandlerMiddleware");
+const cartRoute = require("./routes/cartRoute");
 
 dotenv.config();
 //==============database=================================================
@@ -28,6 +29,7 @@ app.use(errorHandler);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/cart", cartRoute);
 
 const port = process.env.PORT || 8080;
 

@@ -20,8 +20,8 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
    category: {
-      type: mongoose.ObjectId,
-      ref: "Category",
+    type: mongoose.Types.ObjectId,
+      ref: "categories",
       required: true,
     },
     quantity: {
@@ -47,4 +47,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports= mongoose.model("Products", productSchema);
+module.exports= mongoose.model("Product", productSchema);

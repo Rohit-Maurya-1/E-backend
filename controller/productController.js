@@ -106,26 +106,18 @@ module.exports.getSingleProductController = async (req, res, next) => {
 module.exports.UpdateProductController = async (req, res, next) => {
   try {
     const _id = req.params.id;
-    const { businessName, address, phoneNumber, availableHours, websiteLink } =  req.body;
+    const { name, slug, description, price, category, quantity, shipping, rating,numReviews } =  req.body;
     if (req.file) {
       var dataRecords = {
-        businessName,
-        address,
-        phoneNumber,
-        availableHours,
-        websiteLink,
-        profile: req.file.filename,
+        name, description, price, category, quantity, shipping,
+        photo: req.file.filename,
       };
     } else {
       var dataRecords = {
-        businessName,
-        address,
-        phoneNumber,
-        availableHours,
-        websiteLink,
+        name, description, price, category, quantity, shipping,
       };
     }
-    const updateData = await BusinessModel.findByIdAndUpdate(_id, dataRecords);
+    const updateData = await productModel.findByIdAndUpdate(_id, dataRecords);
     if (!updateData) {
       return res.status(400).send({
         status: false,
@@ -146,7 +138,7 @@ module.exports.UpdateProductController = async (req, res, next) => {
 module.exports.DeleteProductController = async (req, res, next) => {
   try {
     const _id = req.params.id;
-    const deleteData = await BusinessModel.findByIdAndDelete(_id);
+    const deleteData = await productModel.findByIdAndDelete(_id);
     if (!deleteData) {
       return res.status(400).send({
         status: false,
